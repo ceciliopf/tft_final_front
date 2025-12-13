@@ -14,7 +14,7 @@ interface ApiService {
     @GET("product")
     suspend fun getProducts(@Header("Authorization") token: String): List<Product>
 
-    @POST("buy")
+    @POST("product/purchase")
     suspend fun buyProducts(
         @Header("Authorization") token: String,
         @Body request: PurchaseRequest
@@ -23,8 +23,8 @@ interface ApiService {
 
 
 object RetrofitInstance {
-
-    private const val BASE_URL = "https://ceciliopf.pythonanywhere.com/"
+    // CERTIFIQUE-SE QUE TERMINA COM /
+    private const val BASE_URL = "https://ceciliopfelipe.pythonanywhere.com/"
 
     val api: ApiService by lazy {
         Retrofit.Builder()
@@ -34,6 +34,7 @@ object RetrofitInstance {
             .create(ApiService::class.java)
     }
 
+    // A barra é crucial aqui também
     fun getThumbUrl(uuid: String): String {
         return "${BASE_URL}product/thumb/$uuid"
     }

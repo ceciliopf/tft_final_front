@@ -2,7 +2,7 @@ package com.example.lojatrabalhofinal.model
 
 
 import com.google.gson.annotations.SerializedName
-
+import java.io.Serializable // Certifique-se de que essa importação exista ou use o caminho completo abaixo
 
 data class Product(
     val id: Int,
@@ -11,7 +11,7 @@ data class Product(
     val thumb: String,
     val desc: String,
     @SerializedName("game_name") val gameName: String
-)
+) : java.io.Serializable
 
 
 data class CartItem(

@@ -33,7 +33,30 @@ fun ProductListScreen(
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(onClick = onGoToCart) {
-                Text("🛒")
+
+                Box(contentAlignment = Alignment.TopEnd) {
+                    Text("🛒", modifier = Modifier.padding(8.dp), style = MaterialTheme.typography.headlineSmall)
+
+                    val totalItems = viewModel.cartItems.sumOf { it.quantity }
+
+                    if (totalItems > 0) {
+                        Surface(
+                            shape = androidx.compose.foundation.shape.CircleShape,
+                            color = Color.Red,
+                            modifier = Modifier
+                                .size(20.dp)
+                                .offset(x = 6.dp, y = (-6).dp)
+                        ) {
+                            Box(contentAlignment = Alignment.Center) {
+                                Text(
+                                    text = totalItems.toString(),
+                                    color = Color.White,
+                                    style = MaterialTheme.typography.labelSmall
+                                )
+                            }
+                        }
+                    }
+                }
             }
         }
     ) { padding ->
@@ -83,7 +106,7 @@ fun ProductDetailScreen(
     viewModel: LojaViewModel,
     onBack: () -> Unit
 ) {
-    Column(modifier = Modifier.fillMaxSize().padding(16.dp).verticalScroll(rememberScrollState())) {
+    Column(modifier = Modifier.fillMaxSize().padding(16.dp).statusBarsPadding().verticalScroll(rememberScrollState())) {
         Button(onClick = onBack) { Text("Voltar") }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -121,7 +144,7 @@ fun CartScreen(
 ) {
     val total = viewModel.cartItems.sumOf { it.product.price * it.quantity } / 100.0
 
-    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+    Column(modifier = Modifier.fillMaxSize().padding(16.dp).statusBarsPadding()) {
         Button(onClick = onBack) { Text("Voltar") }
         Text("Seu Carrinho", style = MaterialTheme.typography.headlineMedium)
 
