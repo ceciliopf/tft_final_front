@@ -23,7 +23,8 @@ interface ApiService {
 
 
 object RetrofitInstance {
-    private const val BASE_URL = "http://192.168.1.109:5000/"
+
+    private const val BASE_URL = "https://ceciliopf.pythonanywhere.com/"
 
     val api: ApiService by lazy {
         Retrofit.Builder()

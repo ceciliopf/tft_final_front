@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 
 class LojaViewModel : ViewModel() {
 
-    private val token = "Bearer SEU_TOKEN_AQUI"
+    private val token = "Bearer 4e0429714b9d557b61a4486dc6bfd475291e991cfbc09835de0f4783fffa146a"
 
     var products = mutableStateListOf<Product>()
     var cartItems = mutableStateListOf<CartItem>()
